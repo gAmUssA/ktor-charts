@@ -1,0 +1,120 @@
+= Ktor Charts
+Viktor Gamov
+:toc:
+:icons: font
+:source-highlighter: highlight.js
+:experimental:
+
+A Kotlin-based web application built with Ktor that displays interactive charts using various visualization libraries. The application fetches data from public sources and visualizes it in various chart types.
+
+== Features
+
+* Interactive data visualizations with multiple charting libraries:
+** Chart.js 
+** D3.js
+** Plotly.js
+** ECharts
+* Multiple chart types: Line, Bar, Pie, and Scatter plots
+* Real-time data updates via WebSockets
+* Stock market data visualization using Alpha Vantage API
+* Responsive design for desktop and mobile devices
+* Built with Kotlin and Ktor
+
+== Prerequisites
+
+* JDK 17 or higher (configured for JDK 21)
+* Gradle
+
+== Getting Started
+
+1. Clone the repository:
++
+[source,bash]
+----
+git clone https://github.com/gAmUssA/ktor-charts.git
+cd ktor-charts
+----
+
+2. Run the application:
++
+[source,bash]
+----
+./gradlew run
+----
+
+3. Open your browser and navigate to:
++
+[source]
+----
+http://localhost:8080
+----
+
+== Project Structure
+
+* `src/main/kotlin/com/example/` - Kotlin source files
+** `Application.kt` - Main application entry point
+** `plugins/` - Ktor plugins configuration
+*** `Routing.kt` - Main routing configuration
+*** `Serialization.kt` - JSON serialization setup
+*** `Static.kt` - Static resource handling
+*** `WebSockets.kt` - WebSocket configuration
+** `routes/` - HTTP route definitions
+*** `ChartRoutes.kt` - Main chart endpoints
+*** `ChartJsRoutes.kt` - Chart.js specific endpoints
+*** `D3Routes.kt` - D3.js specific endpoints
+*** `EChartsRoutes.kt` - ECharts specific endpoints
+*** `PlotlyRoutes.kt` - Plotly.js specific endpoints
+*** `TradeRoutes.kt` - Stock trading data routes
+*** `WebSocketRoutes.kt` - WebSocket routes for real-time updates
+*** `ComparisonRoutes.kt` - Comparative visualization routes
+** `services/` - Data services
+*** `AlphaVantageService.kt` - Stock market data API service
+*** `DataService.kt` - General data fetching service
+*** `TradeService.kt` - Trading data simulation service
+** `models/` - Data models
+*** `ChartData.kt` - Data structures for chart representation
+* `src/main/resources/` - Static resources and templates
+** `static/css/` - CSS stylesheets
+** `static/js/` - JavaScript files for chart rendering
+
+== Real-time Stock Data
+
+The application uses the https://www.alphavantage.co/[Alpha Vantage API] to fetch real-time stock data for popular tech companies. By default, it uses the "demo" API key, which has limited functionality. To use your own API key:
+
+1. Get a free API key from https://www.alphavantage.co/support/#api-key[Alpha Vantage]
+
+2. Run the application with your API key:
++
+[source,bash]
+----
+make run-with-api-key
+----
++
+Or set the environment variable manually:
++
+[source,bash]
+----
+ALPHAVANTAGE_API_KEY=your_api_key make run
+----
+
+== Customizing Data Sources
+
+The application currently uses a combination of sample data and real-time data from Alpha Vantage. To customize the data sources:
+
+1. Open `src/main/kotlin/com/example/services/DataService.kt` for general data
+2. Open `src/main/kotlin/com/example/services/AlphaVantageService.kt` for stock data
+3. Add your own API keys if required
+4. Modify the fetch methods to connect to additional data sources
+
+== License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+== Acknowledgments
+
+* https://ktor.io/[Ktor] - Kotlin asynchronous web framework
+* https://kotlinlang.org/[Kotlin] - A modern programming language for the JVM
+* https://www.chartjs.org/[Chart.js] - Simple yet flexible JavaScript charting
+* https://d3js.org/[D3.js] - Data-Driven Documents for visualization
+* https://plotly.com/javascript/[Plotly.js] - Scientific charting library
+* https://echarts.apache.org/[Apache ECharts] - An open-source JavaScript visualization library
