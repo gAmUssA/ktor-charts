@@ -1,0 +1,2 @@
+if required to run multiple commands prefer using a Makefile (not shell scripts)
+make output colorful and use emojies
